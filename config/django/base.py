@@ -4,7 +4,7 @@ from config.env import env, BASE_DIR
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=ug_ucl@yi6^mrcjyz%(u0%&g2adt#bz3@yos%#@*t#t!ypx=a'
+SECRET_KEY = env.str('SECRET_KEY', default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -18,6 +18,8 @@ LOCAL_APPS = [
     'activity_log.common.apps.CommonConfig',
     'activity_log.users.apps.UsersConfig',
     'activity_log.authentication.apps.AuthenticationConfig',
+    'activity_log.activity.apps.ActivityConfig',
+    'activity_log.planing.apps.PlaningConfig',
 ]
 
 THIRD_PARTY_APPS = [
@@ -80,21 +82,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='psql://admin:SHck257513@127.0.0.1:5432/activity_log'),
+    'default': env.db('DATABASE_URL', default='psql://postgres:2011@127.0.0.1:5432/activity_log'),
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
 
-if os.environ.get('GITHUB_WORKFLOW'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'github_actions',
-            'USER': 'admin',
-            'PASSWORD': 'SHck257513',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 # Password validation
@@ -114,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-AUTH_USER_MODEL = 'users.BaseUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
