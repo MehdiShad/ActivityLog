@@ -1,31 +1,7 @@
 from django.db import models
 from activity_log.common.models import BaseModel
 
-
 # Create your models here.
-
-class Purpose(BaseModel):
-    title = models.CharField(max_length=355)
-    year = models.CharField(max_length=255, null=True, blank=True)
-    description = models.CharField(max_length=1000, null=True, blank=True)
-    comment = models.CharField(max_length=1000, null=True, blank=True)
-    is_completed = models.BooleanField()
-    effort_amount = models.IntegerField(null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.title}"
-
-
-class Plan(BaseModel):
-    title = models.CharField(max_length=355)
-    purpose = models.ForeignKey(Purpose, on_delete=models.CASCADE, null=True, blank=True)
-    description = models.CharField(max_length=1000, null=True, blank=True)
-    comment = models.CharField(max_length=1000, null=True, blank=True)
-    due_date = models.DateTimeField(null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.title}"
-
 
 class Topic(BaseModel):
     fa_title = models.CharField(max_length=255)
@@ -42,9 +18,37 @@ UnitOfMeasure_CHOICES = (
 )
 
 
+class Purpose(BaseModel):
+    title = models.CharField(max_length=355)
+    started_date = models.DateField(null=True, blank=True)
+    due_date = models.DateField(null=True, blank=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
+    is_completed = models.BooleanField()
+    effort_amount = models.IntegerField(null=True, blank=True)
+    unit_of_measure = models.CharField(max_length=75, choices=UnitOfMeasure_CHOICES, default='minute')
+
+    def __str__(self):
+        return f"{self.title}"
+
+
+class Plan(BaseModel):
+    title = models.CharField(max_length=355)
+    # purpose = models.ForeignKey(Purpose, on_delete=models.CASCADE, null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    due_date = models.DateTimeField(null=True, blank=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
+    comment = models.CharField(max_length=1000, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.title}"
+
+
+
+
 class PlanDetail(BaseModel):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, null=True, blank=True)
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, null=True, blank=True)
+    puprpose = models.ForeignKey(Purpose, on_delete=models.CASCADE, null=True, blank=True)
     is_completed = models.BooleanField()
     effort_amount_per_day = models.IntegerField()  # for each day
     unit_of_measure = models.CharField(max_length=75, choices=UnitOfMeasure_CHOICES, default='minute')

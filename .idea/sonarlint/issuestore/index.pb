@@ -1,0 +1,3 @@
+
+…
+Uactivity_log/users/migrations/0003_baseuser_first_name_baseuser_last_name_and_more.py,d\3\d382e1078da5c159402f83e3f1708b5127aeb62d

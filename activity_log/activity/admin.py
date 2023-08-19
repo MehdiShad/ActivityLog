@@ -17,4 +17,4 @@ class ActivityItemAdmin(admin.ModelAdmin):
 @admin.register(ActivityLog)
 class ActivityLogAdmin(admin.ModelAdmin):
     # todo: how to change format of created_at in admin panel
-    list_display = ['activity_item', 'created_at', 'plan', 'is_holiday', 'amount', 'unit_of_measure']
+    list_display = ['activity_item', 'activity_date', 'plan', 'is_holiday', 'amount', 'unit_of_measure']
