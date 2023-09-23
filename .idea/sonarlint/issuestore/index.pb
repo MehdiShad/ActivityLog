@@ -1,3 +1,13 @@
 
 …
 Uactivity_log/users/migrations/0003_baseuser_first_name_baseuser_last_name_and_more.py,d\3\d382e1078da5c159402f83e3f1708b5127aeb62d
+x
+Hactivity_log/activity/migrations/0012_alter_activitylog_activity_date.py,a\9\a9f10894e0755f96124fe77c06daf3726b06d941
+x
+Hactivity_log/activity/migrations/0011_alter_activitylog_activity_date.py,9\d\9da84c7d86e6f60c2dd00e7c2d5369cd78e8c20d
+‹
+[activity_log/planing/migrations/0006_remove_plan_purpose_remove_purpose_comment_and_more.py,e\d\ede98c796075ef067910cd8027f08a15e0cc3683
+Œ
+\activity_log/activity/migrations/0009_activityitem_purpose_activitylog_base_user_and_more.py,f\8\f8e31ee6a53f943f1539f3e1ff192c96a5b90e2c
+r
+Bactivity_log/activity/migrations/0010_activitylog_activity_date.py,b\9\b9a8799d8c117ecd045e883daf382f7aaa9f08b5

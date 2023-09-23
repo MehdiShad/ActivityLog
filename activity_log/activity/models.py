@@ -29,11 +29,20 @@ CONTENT_TYPE_CHOICES = (
 
 
 class ActivityItem(BaseModel):
+    class ContentTypeChoices(models.TextChoices):
+        learning = 'learning', 'Learning',
+        working = 'working', 'Working',
+        developing = "developing", "Developing",
+        reading = 'reading', 'Reading',
+        watching = 'watching', 'Watching',
+        writing = 'writing', 'Writing',
+        listening = 'listening', 'Listening',
+
     fa_title = models.CharField(max_length=255)
     en_title = models.CharField(max_length=255)
     purpose = models.ForeignKey(Purpose, on_delete=models.CASCADE, null=True, blank=True)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, null=True, blank=True)
-    content_type = models.CharField(max_length=110, choices=CONTENT_TYPE_CHOICES, default='learning')
+    content_type = models.CharField(max_length=110, choices=ContentTypeChoices.choices, default='learning')
     description = models.CharField(max_length=1000, null=True, blank=True)
     source_path = models.CharField(max_length=1000, null=True, blank=True)
     git_source = models.CharField(max_length=1000, null=True, blank=True)
@@ -54,10 +63,13 @@ class ActivityLog(BaseModel):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, null=True, blank=True)
     plan_detail = models.ForeignKey(PlanDetail, on_delete=models.CASCADE, null=True, blank=True)
     base_user = models.ForeignKey(BaseUser, on_delete=models.CASCADE, null=True, blank=True)
-    comment = models.CharField(max_length=355, null=True, blank=True)
+    comment = models.TextField(max_length=555, null=True, blank=True)
+    detail = models.TextField(null=True, blank=True)
     is_holiday = models.BooleanField(default=False)
     amount = models.IntegerField(verbose_name='amount', default=0)
     unit_of_measure = models.CharField(max_length=75, choices=UnitOfMeasure_CHOICES, default='minute')
+    rate = models.DecimalField(decimal_places=2, max_digits=3, null=True, blank=True)
+    links = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.activity_item}"

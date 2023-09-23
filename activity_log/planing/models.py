@@ -38,6 +38,8 @@ class Plan(BaseModel):
     due_date = models.DateTimeField(null=True, blank=True)
     description = models.CharField(max_length=1000, null=True, blank=True)
     comment = models.CharField(max_length=1000, null=True, blank=True)
+    feedback = models.TextField(null=True, blank=True)
+    rate = models.DecimalField(decimal_places=2, max_digits=3, null=True, blank=True)
 
     def __str__(self):
         return f"{self.title}"
@@ -56,6 +58,8 @@ class PlanDetail(BaseModel):
     total_effort_time = models.IntegerField(null=True, blank=True)
     total_time_spent = models.IntegerField(default=0, null=True, blank=True)
     progress = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, default=0)
+    was_delete = models.BooleanField(default=False)
+    is_hiden = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.effort_amount_per_day and self.plan and self.plan.due_date and self.plan.created_at:
