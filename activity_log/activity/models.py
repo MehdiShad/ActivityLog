@@ -56,11 +56,21 @@ UnitOfMeasure_CHOICES = (
 )
 
 
+class ActivitySource(BaseModel):
+    fa_name = models.CharField(max_length=255, null=True, blank=True)
+    en_name = models.CharField(max_length=255)
+    domain = models.CharField(max_length=1000, null=True, blank=True)
+
+    def __str__(self):
+        return self.en_name
+
+
 class ActivityLog(BaseModel):
     activity_date = models.DateField(default=timezone.now, null=True, blank=True)
     activity_item = models.ForeignKey(ActivityItem, on_delete=models.CASCADE)
     purpose = models.ForeignKey(Purpose, on_delete=models.CASCADE, null=True, blank=True)
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, null=True, blank=True)
+    activity_source = models.ForeignKey(ActivitySource, on_delete=models.PROTECT, null=True, blank=True)
     plan_detail = models.ForeignKey(PlanDetail, on_delete=models.CASCADE, null=True, blank=True)
     base_user = models.ForeignKey(BaseUser, on_delete=models.CASCADE, null=True, blank=True)
     comment = models.TextField(max_length=555, null=True, blank=True)
