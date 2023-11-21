@@ -11,7 +11,7 @@ class PurposeAdmin(admin.ModelAdmin):
 
 @admin.register(Plan)
 class PlanAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_at', 'due_date']
+    list_display = ['title', 'created_at', 'start_date', 'due_date']
 
 
 @admin.register(Topic)

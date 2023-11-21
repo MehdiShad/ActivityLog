@@ -1,10 +1,10 @@
 from django.db import models
-from activity_log.common.models import BaseModel
-from activity_log.planing.models import Plan, PlanDetail, Purpose
+from django.utils import timezone
+from django.dispatch import receiver
 from activity_log.users.models import BaseUser
 from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.utils import timezone
+from activity_log.common.models import BaseModel
+from activity_log.planing.models import Plan, PlanDetail, Purpose
 
 
 # Create your models here.
@@ -73,10 +73,11 @@ class LearningResource(BaseModel):
     source = models.ForeignKey(Source, on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     enrollment_date = models.DateField(null=True, blank=True)
+    link = models.URLField(null=True, blank=True)
     creators = models.ManyToManyField('Creator', related_name='learning_resource', null=True, blank=True)
 
     def __str__(self):
-        return str(self.title)
+        return f"{self.title} :: {self.creators.first()}"
 
 
 class Creator(BaseModel):
@@ -85,16 +86,20 @@ class Creator(BaseModel):
     en_name = models.CharField(max_length=200, null=True, blank=True)
     title = models.CharField(max_length=100, null=True, blank=True)
     github_address = models.URLField(null=True, blank=True)
-    website_address = models.URLField(null=True, blank=True)
     youtube_address = models.URLField(null=True, blank=True)
     linkedin_address = models.URLField(null=True, blank=True)
     linkedin_address = models.URLField(null=True, blank=True)
     telegram_address = models.URLField(null=True, blank=True)
+    website_address = models.URLField(null=True, blank=True)
+    twitter_address = models.URLField(null=True, blank=True)
+    email_address = models.URLField(null=True, blank=True)
+    instagram_address = models.URLField(null=True, blank=True)
+    about = models.TextField(null=True, blank=True)
     created_resources_creators = models.ManyToManyField('LearningResource', related_name='creator', null=True, blank=True)
 
     def __str__(self):
         if self.first_name is not None or self.last_name is not None:
-            return f"{self.first_name} - {self.last_name}"
+            return f"{self.first_name} {self.last_name}"
         elif self.title is not None:
             return str(self.title)
         else:

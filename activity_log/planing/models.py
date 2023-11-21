@@ -1,6 +1,7 @@
 from django.db import models
 from activity_log.common.models import BaseModel
 
+
 # Create your models here.
 
 class Topic(BaseModel):
@@ -40,11 +41,11 @@ class Plan(BaseModel):
     comment = models.CharField(max_length=1000, null=True, blank=True)
     feedback = models.TextField(null=True, blank=True)
     rate = models.DecimalField(decimal_places=2, max_digits=3, null=True, blank=True)
+    was_done = models.BooleanField(default=False, null=True, blank=True)
+    was_delete = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
         return f"{self.title}"
-
-
 
 
 class PlanDetail(BaseModel):
