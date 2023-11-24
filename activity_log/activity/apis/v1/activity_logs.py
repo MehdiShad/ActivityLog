@@ -9,6 +9,7 @@ from activity_log.activity.selectors import activity_logs as activity_logs_selec
 from activity_log.api.pagination import LimitOffsetPagination, get_paginated_response_context
 from activity_log.common.services import error_response, handle_validation_error, success_response
 
+
 class OutPutActivityLogsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActivityLog
