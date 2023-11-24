@@ -5,9 +5,9 @@ from rest_framework import status, serializers
 from drf_spectacular.utils import extend_schema
 from activity_log.api.mixins import ApiAuthMixin
 from activity_log.activity.models import ActivityLog
+from activity_log.activity.selectors import activity_logs as activity_logs_selector
 from activity_log.api.pagination import LimitOffsetPagination, get_paginated_response_context
 from activity_log.common.services import error_response, handle_validation_error, success_response
-from activity_log.activity.selectors import activity_logs as activity_logs_selector
 
 class OutPutActivityLogsSerializer(serializers.ModelSerializer):
     class Meta:
