@@ -83,4 +83,4 @@ class PlanDetail(BaseModel):
         return 0
 
     def __str__(self):
-        return f"{self.topic}"
+        return f"{self.topic} : {self.plan}"
