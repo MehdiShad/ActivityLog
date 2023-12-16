@@ -20,6 +20,7 @@ LOCAL_APPS = [
     'activity_log.authentication.apps.AuthenticationConfig',
     'activity_log.activity.apps.ActivityConfig',
     'activity_log.planing.apps.PlaningConfig',
+    'activity_log.todo.apps.TodoConfig',
 ]
 
 THIRD_PARTY_APPS = [
