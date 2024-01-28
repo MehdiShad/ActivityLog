@@ -42,7 +42,7 @@ class ActivityLogsApi(ApiAuthMixin, APIView):
         default_limit = 25
 
     class FilterActivityLogsSerializer(serializers.Serializer):
-        test = serializers.CharField(required=False)
+        is_holiday = serializers.BooleanField(required=False)
 
     @extend_schema(parameters=[FilterActivityLogsSerializer], responses=CustomActivityLogsMultiResponseSerializer,
                    tags=['ActivityLogs'])

@@ -42,7 +42,9 @@ class ItemsApi(ApiAuthMixin, APIView):
         default_limit = 25
 
     class FilterItemsSerializer(serializers.Serializer):
-        test = serializers.CharField(required=False)
+        fa_title = serializers.CharField(required=False)
+        en_title = serializers.CharField(required=False)
+        content_type = serializers.CharField(required=False)
 
     @extend_schema(parameters=[FilterItemsSerializer], responses=CustomItemsMultiResponseSerializer,
                    tags=['Items'])

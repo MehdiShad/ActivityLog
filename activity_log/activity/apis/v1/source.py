@@ -42,7 +42,8 @@ class SourcesApi(ApiAuthMixin, APIView):
         default_limit = 25
 
     class FilterSourcesSerializer(serializers.Serializer):
-        test = serializers.CharField(required=False)
+        fa_name = serializers.CharField(required=False)
+        en_name = serializers.CharField(required=False)
 
     @extend_schema(parameters=[FilterSourcesSerializer], responses=CustomSourcesMultiResponseSerializer,
                    tags=['Sources'])

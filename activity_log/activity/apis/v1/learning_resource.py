@@ -3,8 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, serializers
 from drf_spectacular.utils import extend_schema
-from activity_log.activity.models import LearningResource
 from activity_log.api.mixins import ApiAuthMixin
+from activity_log.activity.models import LearningResource
 from activity_log.activity.selectors import learning_resource as learning_resource_selector
 from activity_log.api.pagination import LimitOffsetPagination, get_paginated_response_context
 from activity_log.common.services import error_response, handle_validation_error, success_response
@@ -42,7 +42,7 @@ class LearningResourcesApi(ApiAuthMixin, APIView):
         default_limit = 25
 
     class FilterLearningResourcesSerializer(serializers.Serializer):
-        test = serializers.CharField(required=False)
+        title = serializers.CharField(required=False)
 
     @extend_schema(parameters=[FilterLearningResourcesSerializer],
                    responses=CustomLearningResourcesMultiResponseSerializer,

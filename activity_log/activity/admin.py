@@ -17,8 +17,8 @@ class ItemAdmin(admin.ModelAdmin):
 @admin.register(models.ActivityLog)
 class ActivityLogAdmin(admin.ModelAdmin):
     # todo: how to change format of created_at in admin panel
-    list_display = ['activity_item', 'activity_source', 'creator', 'amount', 'activity_date', 'learning_resource', 'is_holiday', 'plan']
-    list_editable = ['is_holiday', 'learning_resource', 'amount', 'activity_source', 'creator']
+    list_display = ['activity_item', 'activity_source', 'creator', 'amount', 'activity_date', 'plan']
+    list_editable = ['amount', 'activity_source', 'creator']
     # list_filter = ['activity_item']
     search_fields = ['activity_item']
     # list_filter = ['activity_item']

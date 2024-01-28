@@ -42,7 +42,8 @@ class TopicsApi(ApiAuthMixin, APIView):
         default_limit = 25
 
     class FilterTopicsSerializer(serializers.Serializer):
-        test = serializers.CharField(required=False)
+        fa_title = serializers.CharField(required=False)
+        en_title = serializers.CharField(required=False)
 
     @extend_schema(parameters=[FilterTopicsSerializer], responses=CustomTopicsMultiResponseSerializer,
                    tags=['Topics'])
