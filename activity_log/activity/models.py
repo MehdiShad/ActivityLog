@@ -47,6 +47,7 @@ class Item(BaseModel):
     description = models.CharField(max_length=1000, null=True, blank=True)
     source_path = models.CharField(max_length=1000, null=True, blank=True)
     git_source = models.CharField(max_length=1000, null=True, blank=True)
+    manager = models.ForeignKey('Creator', on_delete=models.DO_NOTHING, null=True, blank=True)
 
     def __str__(self):
         return f"{self.fa_title}"

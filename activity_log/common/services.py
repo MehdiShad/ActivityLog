@@ -1,6 +1,6 @@
 from typing import List, Dict, Any, Tuple
-
 from activity_log.common.types import DjangoModelType
+from rest_framework.exceptions import ValidationError
 
 
 def model_update(
